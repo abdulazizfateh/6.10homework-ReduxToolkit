@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: Inter;
+    src: url(../src/assets/fonts/Inter-VariableFont_opsz\,wght.ttf);
+}
+
+@theme {
+    --color-primary-bg: #030712;
+    --color-secondary-bg: #11131e;
+    --color-border: #1d1f29;
+    --color-primary-text: #fff;
+    --color-secondary-text: #d1d5dc;
+    --color-third-text: #98a1ae;
+    --color-highlight-blue: #00bcff;
+    --color-highlight-hotpink: hotpink;
+
+    --font-Inter: Inter;
+}
+
+* {
+    font-family: var(--font-Inter);
+}
+
+body {
+    color: var(--color-primary-text);
+    background-color: var(--color-primary-bg);
+}
+
+.container {
+    padding: 0 12px;
+}
+
+@media (min-width: 640px) {
+    .container {
+        padding: 0 16px;
+    }
+}
+
+.header_link.active {
+    border-color: var(--color-highlight-blue);
+
+}
+
+.fly {
+    position: relative;
+}
+
+.fly::before {
+    animation: flyToTop .7s ease-out 0s 1;
+    content: "+1";
+    font-size: 14px;
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-highlight-blue);
+    border-radius: 4px;
+}
+
+
+@keyframes flyToTop {
+    from {
+        transform: translateY(200px);
+    }
+
+    to {
+        transform: translateY(-200px);
+    }
+}
