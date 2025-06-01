@@ -14,6 +14,7 @@
     --color-third-text: #98a1ae;
     --color-highlight-blue: #00bcff;
     --color-highlight-hotpink: hotpink;
+    --color-border-hover: #ffffff50;
 
     --font-Inter: Inter;
 }
@@ -47,7 +48,7 @@ body {
 }
 
 .fly::before {
-    animation: flyToTop .7s ease-out 0s 1;
+    animation: flyToTop .5s ease-in 0s 1;
     content: "+1";
     font-size: 14px;
     position: absolute;
@@ -65,10 +66,10 @@ body {
 
 @keyframes flyToTop {
     from {
-        transform: translateY(200px);
+        transform: translateY(100%);
     }
 
     to {
-        transform: translateY(-200px);
+        transform: translateY(-280px);
     }
 }

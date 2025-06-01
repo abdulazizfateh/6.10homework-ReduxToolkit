@@ -7,13 +7,12 @@ import { IoAdd } from "react-icons/io5";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoMdHeart } from "react-icons/io";
 
-// Use Dispatch
+// Use Dispatch, Selector
 import { useDispatch, useSelector } from 'react-redux';
 // Add to Liked Items List
 import { addToLikedItems } from '../redux/features/liked.slice'
 // Add to Cart
 import { addToCart } from '../redux/features/cart.slice'
-
 
 const ProductCards = ({ data, loading }) => {
     const navigate = useNavigate();
@@ -22,9 +21,15 @@ const ProductCards = ({ data, loading }) => {
     const handleLikedItem = (product) => {
         dispatch(addToLikedItems(product));
     }
+    const [isClicked, SetIsClicked] = useState(null);
     const handleAddToCart = (product) => {
         dispatch(addToCart(product));
+        SetIsClicked(product.id);
+        setTimeout(() => {
+            SetIsClicked(null);
+        }, 500);
     }
+    const cart = useSelector(state => state.cart.cart);
 
     return (
         <section className='section_products py-8 min-h-[92dvh]'>
@@ -46,15 +51,15 @@ const ProductCards = ({ data, loading }) => {
                                     <div className='flex items-center gap-2 justify-between'>
                                         <p className='text-highlight-blue text-xs sm:text-sm'>${product.price}</p>
                                         <div className='flex items-center gap-1'>
-                                            <button onClick={() => handleLikedItem(product)} className='size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent'>
+                                            <button onClick={() => handleLikedItem(product)} className='size-7 md:size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent'>
                                                 {
                                                     (likedItems.some(item => item.id === product.id)) ?
-                                                        <IoMdHeart className='text-highlight-blue' />
-                                                        : <IoMdHeartEmpty className='text-highlight-blue' />
+                                                        <IoMdHeart className='text-highlight-blue text-sm md:text-base' />
+                                                        : <IoMdHeartEmpty className='text-highlight-blue text-sm md:text-base' />
                                                 }
                                             </button>
-                                            <button onClick={() => handleAddToCart(product)} className='size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent'>
-                                                <IoAdd />
+                                            <button onClick={() => handleAddToCart(product)} className={`${isClicked === product.id ? "fly" : ""} size-7 md:size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent`}>
+                                                <IoAdd className='text-sm md:text-base' />
                                             </button>
                                         </div>
                                     </div>

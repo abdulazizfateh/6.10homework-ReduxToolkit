@@ -17,15 +17,13 @@ import { IoAdd } from "react-icons/io5";
 import { PiMinusLight } from "react-icons/pi";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoMdHeart } from "react-icons/io";
+import { AiOutlineDelete } from "react-icons/ai";
 
 
 const Cart = () => {
   const navigate = useNavigate();
   const cart = useSelector(state => state.cart.cart);
   const uniqueCart = useSelector(state => state.cart.uniqueCart);
-
-  console.log(uniqueCart);
-  console.log(cart);
 
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
@@ -55,33 +53,38 @@ const Cart = () => {
           <div className='product_detail_wrapper grid grid-cols-[3fr_1fr] max-lg:grid-cols-1 gap-5 max-xl:gap-2 max-lg:gap-5'>
             <div className='border-t border-l border-r border-border flex flex-col rounded-xl bg-secondary-bg'>
               {
-                uniqueCart.map(product => (
-                  <div key={product.id} className='flex items-center gap-4 border-b border-border px-2 py-3 sm:px-3 sm:py-4 md:px-5 md:py-5'>
-                    <div className='flex-2/7 sm:flex-1/6'>
-                      <img onClick={() => navigate(`/products/${product.id}`)} className='cursor-pointer w-full h-full object-cover' src={product.thumbnail} alt="" />
+                uniqueCart.map((product, index) => (
+                  <div key={product.id} className={`flex items-center gap-4 ${uniqueCart.length === index + 1 ? "" : "border-b-[0.1px]"} border-border-hover px-2 pr-2 py-3 sm:px-3 sm:py-4 md:px-5 md:py-5`}>
+                    <div className='flex items-center justify-center'>
+                      <img onClick={() => navigate(`/products/${product.id}`)} className='size-18 min-[450px]:size-28 md:size-36 border border-border rounded-lg bg-primary-bg hover:border-border-hover duration-300  cursor-pointer object-cover' src={product.thumbnail} alt="" />
                     </div>
-                    <div className='flex-5/7 sm:flex-5/6'>
-                      <p onClick={() => navigate(`/products/${product.id}`)} className='cursor-pointer hover:underline duration-150 text-xs md:text-sm text-primary-text line-clamp-1 mb-1'>{product.title}</p>
-                      <p className='text-xs md:text-sm text-secondary-text line-clamp-2 mb-3 md:mb-4'>{product.description}</p>
+                    <div className='flex-1'>
+                      <div className='flex items-center justify-between mb-1'>
+                        <p onClick={() => navigate(`/products/${product.id}`)} className='cursor-pointer hover:underline duration-150 text-xs md:text-sm text-primary-text line-clamp-1'>{product.title} </p>
+                        <button onClick={() => handleLikedItem(product)} className='size-7 md:size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent'>
+                          {
+                            (likedItems.some(item => item.id === product.id)) ?
+                              <IoMdHeart className='text-highlight-blue text-xs md:text-base' />
+                              : <IoMdHeartEmpty className='text-highlight-blue text-xs md:text-base' />
+                          }
+                        </button>
+                      </div>
+                      <p className='w-[90%] text-xs md:text-sm text-secondary-text line-clamp-2 mb-3 md:mb-4'>{product.description}</p>
                       <div className='flex items-center gap-2 justify-between'>
                         <div className='flex items-center gap-0.5'>
-                          <button onClick={() => handleAddToCart(product)} className='size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent'>
-                            <IoAdd />
+                          <button onClick={() => handleAddToCart(product)} className='size-7 md:size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent'>
+                            <IoAdd className='text-sm md:text-base' />
                           </button>
-                          <button className='size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent'>
+                          <button className='size-7 md:size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] text-xs md:text-sm lg:text-base'>
                             {uniqueCart.length}
                           </button>
-                          <button onClick={() => handleRemoveFromCart(product)} className='size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent'>
-                            <PiMinusLight />
+                          <button onClick={() => handleRemoveFromCart(product)} className='size-7 md:size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent'>
+                            <PiMinusLight className='text-sm md:text-base' />
                           </button>
                         </div>
                         <div>
-                          <button onClick={() => handleLikedItem(product)} className='size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent'>
-                            {
-                              (likedItems.some(item => item.id === product.id)) ?
-                                <IoMdHeart className='text-highlight-blue' />
-                                : <IoMdHeartEmpty className='text-highlight-blue' />
-                            }
+                          <button className='size-7 md:size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent'>
+                            <AiOutlineDelete className='text-sm md:text-base' />
                           </button>
                         </div>
                       </div>
