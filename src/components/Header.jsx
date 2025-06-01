@@ -15,17 +15,17 @@ const Header = () => {
                         {
                             headerRouteLinks.map((item) => (
                                 <li key={item.id}>
-                                    <NavLink className={`${(item.id === 4 || item.id === 5) ? "relative flex items-center gap-1" : ""} header_link text-xs md:text-sm py-[4px] border-b-[.8px] border-b-transparent hover:border-b-[#98a1ae] duration-150 ease-out`} to={`${item.route}`}>
-                                        <span>{item.title}</span>
+                                    <NavLink className={`${(item.id === 4 || item.id === 5) ? "flex gap-1" : ""} header_link text-xs md:text-sm border-b-[.8px] border-b-transparent hover:border-b-[#98a1ae] duration-150 ease-out`} to={`${item.route}`}>
+                                        <p className='py-[4px]'>{item.title}</p>
                                         {
                                             item.id === 4 &&
-                                            <div className='size-5 rounded-sm border border-[#046082] bg-highlight-blue flex items-center justify-center'>
+                                            <div className='size-4 sm:size-5 rounded-sm border border-[#046082] bg-highlight-blue flex items-center justify-center'>
                                                 <span className='text-xs md:text-sm'>{likedItems.length}</span>
                                             </div>
                                         }
                                           {
                                             item.id === 5 &&
-                                            <div className='size-5 rounded-sm border border-[#046082] bg-highlight-blue flex items-center justify-center'>
+                                            <div className='size-4 sm:size-5 rounded-sm border border-[#046082] bg-highlight-blue flex items-center justify-center'>
                                                 <span className='text-xs md:text-sm'>{uniqueCart.length}</span>
                                             </div>
                                         }
