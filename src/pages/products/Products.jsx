@@ -7,8 +7,9 @@ import ProductCards from '../../components/ProductCards';
 
 const Products = () => {
   const { data, loading } = useFetch("/products");
+  
   return (
-    <ProductCards data={data} loading={loading} />
+    <ProductCards data={data?.products} loading={loading} />
   )
 }
 

@@ -11,6 +11,9 @@ import { IoMdHeart } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 // Add to Liked Items List
 import { addToLikedItems } from '../redux/features/liked.slice'
+// Add to Cart
+import { addToCart } from '../redux/features/cart.slice'
+
 
 const ProductCards = ({ data, loading }) => {
     const navigate = useNavigate();
@@ -18,6 +21,9 @@ const ProductCards = ({ data, loading }) => {
     const likedItems = useSelector(state => state.likedSlice.likedItemsList);
     const handleLikedItem = (product) => {
         dispatch(addToLikedItems(product));
+    }
+    const handleAddToCart = (product) => {
+        dispatch(addToCart(product));
     }
 
     return (
@@ -31,7 +37,7 @@ const ProductCards = ({ data, loading }) => {
                         data?.map((product) => {
                             return <div key={product.id} className='card bg-secondary-bg overflow-hidden rounded-lg border border-border group'>
                                 <div className='card_image bg-border overflow-hidden relative'>
-                                    <img onClick={() => navigate(`/products/${product.id}`)} loading="lazy" className='object-contain min-[320px]:object-cover w-full h-[160px] sm:h-[220px] md:h-[289px] group-hover:scale-[1.03] duration-500' src={product.image} alt={product.title} />
+                                    <img onClick={() => navigate(`/products/${product.id}`)} loading="lazy" className='object-contain min-[320px]:object-cover w-full h-[160px] sm:h-[220px] md:h-[289px] group-hover:scale-[1.03] duration-500' src={product.images[0]} alt={product.title} />
 
                                 </div>
                                 <div className='card_body p-2 md:pt-2.5 md:p-3'>
@@ -47,15 +53,9 @@ const ProductCards = ({ data, loading }) => {
                                                         : <IoMdHeartEmpty className='text-highlight-blue' />
                                                 }
                                             </button>
-                                            <button className='size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent'>
+                                            <button onClick={() => handleAddToCart(product)} className='size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent'>
                                                 <IoAdd />
                                             </button>
-                                            {/* {
-                                                (state.cart.length > 0 && state.cart.some((item) => item.id === product.id)) &&
-                                                <button className='size-8 cursor-pointer rounded-md bg-border flex items-center justify-center border border-[#3d444d] hover:bg-transparent'>
-                                                    <span>{state.cart.length}</span>
-                                                </button>
-                                            } */}
                                         </div>
                                     </div>
                                 </div>

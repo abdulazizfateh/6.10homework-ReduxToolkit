@@ -18,12 +18,12 @@ export const headerRouteLinks = [
         id: 4,
         title: "Liked",
         route: "/liked"
-    }, 
-    // {
-    //     id: 5,
-    //     title: "Cart",
-    //     route: "/cart"
-    // }
+    },
+    {
+        id: 5,
+        title: "Cart",
+        route: "/cart"
+    }
 ];
 
 export const footerLinks = [

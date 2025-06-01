@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 
 const Header = () => {
     const likedItems = useSelector(state => state.likedSlice.likedItemsList);
+    const uniqueCart = useSelector(state => state.cart.uniqueCart);
     return (
         <header className='site_header sticky w-full top-0 left-0 z-20 bg-primary-bg border-b border-border'>
             <div className='container mx-auto'>
@@ -20,6 +21,12 @@ const Header = () => {
                                             item.id === 4 &&
                                             <div className='size-5 rounded-sm border border-[#046082] bg-highlight-blue flex items-center justify-center'>
                                                 <span className='text-xs md:text-sm'>{likedItems.length}</span>
+                                            </div>
+                                        }
+                                          {
+                                            item.id === 5 &&
+                                            <div className='size-5 rounded-sm border border-[#046082] bg-highlight-blue flex items-center justify-center'>
+                                                <span className='text-xs md:text-sm'>{uniqueCart.length}</span>
                                             </div>
                                         }
                                     </NavLink>

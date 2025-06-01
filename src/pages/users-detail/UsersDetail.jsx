@@ -13,6 +13,7 @@ const UsersDetail = () => {
 
     const { id } = useParams();
     const { data } = useFetch(`/users/${id}`);
+    console.log(data);
 
     return (
         <section className='section_user_detail'>
@@ -26,7 +27,7 @@ const UsersDetail = () => {
                             }
                         </div>
                         <div className='h-8 md:h-11 flex items-center border-b border-b-border'>
-                            <p className='px-3 text-[11px] md:text-sm text-secondary-text line-clamp-1'>Full name:<span className='text-white capitalize'> {data?.name.firstname} {data?.name.lastname}</span></p>
+                            <p className='px-3 text-[11px] md:text-sm text-secondary-text line-clamp-1'>Full name:<span className='text-white capitalize'> {data?.firstName} {data?.lastName}</span></p>
                         </div>
                         <div className='h-8 md:h-11 flex items-center border-b border-b-border'>
                             <p className='px-3 text-[11px] md:text-sm text-secondary-text line-clamp-1'>Username: <span className='text-highlight-blue cursor-pointer'>@{data?.username}</span></p>
@@ -38,7 +39,7 @@ const UsersDetail = () => {
                             <p className='px-3 text-[11px] md:text-sm text-secondary-text line-clamp-1'>Phone Number:<span className='text-white'> {data?.phone}</span></p>
                         </div>
                         <div className='py-2 md:py-2.5 border-b border-b-border'>
-                            <p className='px-3 text-[11px] md:text-sm text-secondary-text line-clamp-3'>Address:<span className='text-highlight-blue cursor-pointer hover:underline'> {data?.address?.number}, {data?.address?.street}, {data?.address?.city}, {data?.address?.zipcode}, {data?.address?.country}, {data?.address?.postalCode}</span></p>
+                            <p className='px-3 text-[11px] md:text-sm text-secondary-text line-clamp-3'>Address:<span className='text-highlight-blue cursor-pointer hover:underline'> {data?.address?.address}, {data?.address?.city}, {data?.address?.state}, {data?.address?.country}, {data?.address?.postalCode}</span></p>
                         </div>
                     </div>
                 </div>

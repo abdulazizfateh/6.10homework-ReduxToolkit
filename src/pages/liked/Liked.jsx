@@ -7,8 +7,8 @@ import { BsCart } from "react-icons/bs";
 import { useSelector } from 'react-redux';
 
 const Liked = () => {
-  const likedItems = useSelector(state => state.likedSlice.likedItemsList);  
   const navigate = useNavigate();
+  const likedItems = useSelector(state => state.likedSlice.likedItemsList);  
   return (
     <>
       {

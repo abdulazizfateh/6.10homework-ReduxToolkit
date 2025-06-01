@@ -22,10 +22,10 @@ const UserCards = ({ data, loading }) => {
                                     </NavLink>
                                 </div>
                                 <div className='h-8 md:h-10 flex items-center border-b border-b-border'>
-                                    <p className='px-2 sm:px-3 text-[11px] md:text-sm text-secondary-text line-clamp-1'>First Name: <span className='text-white capitalize'>{user.name.firstname}</span></p>
+                                    <p className='px-2 sm:px-3 text-[11px] md:text-sm text-secondary-text line-clamp-1'>First Name: <span className='text-white capitalize'>{user.firstName}</span></p>
                                 </div>
                                 <div className='h-8 md:h-10 flex items-center border-b border-b-border'>
-                                    <p className='px-2 sm:px-3 text-[11px] md:text-sm text-secondary-text line-clamp-1'>Last Name: <span className='text-white capitalize'>{user.name.lastname}</span></p>
+                                    <p className='px-2 sm:px-3 text-[11px] md:text-sm text-secondary-text line-clamp-1'>Last Name: <span className='text-white capitalize'>{user.lastName}</span></p>
                                 </div>
                                 <div className='h-8 md:h-10 flex items-center'>
                                     <NavLink to={`/users/${user.id}`} className='px-2 sm:px-3 text-[11px] md:text-sm text-secondary-text line-clamp-1'>Username: <span className='text-highlight-blue cursor-pointer hover:underline'>@{user.username}</span></NavLink>

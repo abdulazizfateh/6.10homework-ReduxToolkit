@@ -9,7 +9,7 @@ const Users = () => {
     const { data, loading } = useFetch("/users");
 
     return (
-        <UserCards data={data} loading={loading} />
+        <UserCards data={data?.users} loading={loading} />
     )
 }
 

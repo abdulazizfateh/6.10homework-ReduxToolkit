@@ -15,7 +15,7 @@ const NotFound = lazy(() => import("./not-found/NotFound"));
 // Liked Page
 const Liked = lazy(() => import("./liked/Liked"));
 // Cart Page
-// const Cart = lazy(() => import("./cart/Cart"));
+const Cart = lazy(() => import("./cart/Cart"));
 
 const MainRouters = () => {
     return (
@@ -34,7 +34,7 @@ const MainRouters = () => {
                     // Liked Page
                     <Route path='/liked' element={<Liked />}></Route>
                     // Cart Page
-                    {/* <Route path='/cart' element={<Cart />}></Route> */}
+                    <Route path='/cart' element={<Cart />}></Route>
                 </Route>
             </Routes>
         </>
