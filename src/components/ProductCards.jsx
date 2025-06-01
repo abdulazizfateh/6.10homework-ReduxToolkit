@@ -49,14 +49,14 @@ const ProductCards = ({ data, loading }) => {
                                     <div className='flex items-center gap-2 justify-between'>
                                         <p className='text-highlight-blue text-xs sm:text-sm'>${product.price}</p>
                                         <div className='flex items-center gap-1'>
-                                            <button onClick={() => handleLikedItem(product)} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-secondary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent'>
+                                            <button onClick={() => handleLikedItem(product)} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light light:hover:border-border-hover-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent'>
                                                 {
                                                     (likedItems.some(item => item.id === product.id)) ?
                                                         <IoMdHeart className='text-highlight-blue text-sm md:text-base' />
                                                         : <IoMdHeartEmpty className='text-highlight-blue text-sm md:text-base' />
                                                 }
                                             </button>
-                                            <button onClick={() => handleAddToCart(product)} className={`${isClicked === product.id ? "fly" : ""} size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-secondary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent`}>
+                                            <button onClick={() => handleAddToCart(product)} className={`${isClicked === product.id ? "fly" : ""} size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light light:hover:border-border-hover-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent`}>
                                                 <IoAdd className='text-sm md:text-base' />
                                             </button>
                                         </div>

@@ -10,12 +10,14 @@ import { PiMoonLight } from "react-icons/pi";
 const Header = () => {
     const likedItems = useSelector(state => state.likedSlice.likedItemsList);
     const uniqueCart = useSelector(state => state.cart.uniqueCart);
-    const [light, setLight] = useState(false);
+    const [light, setLight] = useState(false || JSON.parse(localStorage.getItem("mode")));
     const root = document.documentElement;
     if (light) {
         root.classList.add("light");
+        localStorage.setItem("mode", JSON.stringify(true));
     } else {
         root.classList.remove("light");
+        localStorage.setItem("mode", JSON.stringify(false));
     }
 
     return (
