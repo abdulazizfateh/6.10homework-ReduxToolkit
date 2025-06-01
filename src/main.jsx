@@ -19,6 +19,5 @@ createRoot(document.getElementById('root')).render(
       </Provider>
     </SuspenseCustom>
   </BrowserRouter>
-
   // </StrictMode>,
 )

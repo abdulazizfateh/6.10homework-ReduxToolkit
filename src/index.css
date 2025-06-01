@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant light (&:where(.light, .light *));
 
 @font-face {
     font-family: Inter;
@@ -15,6 +16,13 @@
     --color-highlight-blue: #00bcff;
     --color-highlight-hotpink: hotpink;
     --color-border-hover: #ffffff50;
+
+    --color-primary-bg-light: #fff;
+    --color-secondary-bg-light: #f1f4f7;
+    --color-border-light: #e6e6e8;
+    --color-primary-text-light: #000;
+    --color-secondary-text-light: #364152;
+    --color-border-hover-light: #ccc;
 
     --font-Inter: Inter;
 }
@@ -50,6 +58,7 @@ body {
 .fly::before {
     animation: flyToTop .5s ease-in 0s 1;
     content: "+1";
+    color: white;
     font-size: 14px;
     position: absolute;
     top: -100%;

@@ -10,13 +10,13 @@
 
 @media (min-width: 640px) {
   .loader {
-      width: 30px;
+    width: 30px;
   }
 }
 
 @media (min-width: 940px) {
   .loader {
-      width: 35px;
+    width: 35px;
   }
 }
 
@@ -40,20 +40,20 @@
 
   0%,
   20% {
-      transform: rotate(0)
+    transform: rotate(0)
   }
 
   100% {
-      transform: rotate(360deg)
+    transform: rotate(360deg)
   }
 }
 
 @keyframes l3-1 {
   50% {
-      transform: rotate(var(--s, 90deg))
+    transform: rotate(var(--s, 90deg))
   }
 
   100% {
-      transform: rotate(0)
+    transform: rotate(0)
   }
 }

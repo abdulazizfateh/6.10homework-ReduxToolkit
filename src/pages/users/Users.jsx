@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // Fetch hook
 import useFetch from '../../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import UserCards from '../../components/UserCards';
 
 const Users = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
     const { data, loading } = useFetch("/users");
 
     return (

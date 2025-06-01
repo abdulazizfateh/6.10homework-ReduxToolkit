@@ -19,27 +19,27 @@ const UsersDetail = () => {
         <section className='section_user_detail'>
             <div className="container mx-auto">
                 <div className='users_detail_wrapper w-full h-[92dvh] flex items-center justify-center'>
-                    <div key={data?.id} className='users_detail_card bg-secondary-bg w-[40%] max-[1024px]:w-[60%] max-[768px]:w-85% max-[550px]:w-[90%] max-[450px]:w-full mx-auto rounded-lg overflow-hidden border border-border'>
-                        <div className='h-11 px-3 flex items-center justify-between gap-1 border-b border-b-border'>
-                            <PiUserLight className='text-secondary-text text-lg md:text-2xl leading-6 hover:text-highlight-blue duration-300' />
+                    <div key={data?.id} className='users_detail_card bg-secondary-bg light:bg-secondary-bg-light w-[40%] max-[1024px]:w-[60%] max-[768px]:w-85% max-[550px]:w-[90%] max-[450px]:w-full mx-auto rounded-lg overflow-hidden border border-border light:border-border-light'>
+                        <div className='h-11 px-3 flex items-center justify-between gap-1 border-b border-b-border light:border-border-light'>
+                            <PiUserLight className='text-secondary-text light:text-secondary-text-light text-lg md:text-2xl leading-6 hover:text-highlight-blue duration-300' />
                             {
                                 data?.id > 3 && (<RiVerifiedBadgeFill className='text-lg md:text-2xl text-highlight-blue' />)
                             }
                         </div>
-                        <div className='h-8 md:h-11 flex items-center border-b border-b-border'>
-                            <p className='px-3 text-[11px] md:text-sm text-secondary-text line-clamp-1'>Full name:<span className='text-white capitalize'> {data?.firstName} {data?.lastName}</span></p>
+                        <div className='h-8 md:h-11 flex items-center border-b border-b-border light:border-border-light'>
+                            <p className='px-3 text-[11px] md:text-sm text-secondary-text light:text-secondary-text-light line-clamp-1'>Full name:<span className='text-primary-text light:text-primary-text-light capitalize'> {data?.firstName} {data?.lastName}</span></p>
                         </div>
-                        <div className='h-8 md:h-11 flex items-center border-b border-b-border'>
-                            <p className='px-3 text-[11px] md:text-sm text-secondary-text line-clamp-1'>Username: <span className='text-highlight-blue cursor-pointer'>@{data?.username}</span></p>
+                        <div className='h-8 md:h-11 flex items-center border-b border-b-border light:border-border-light'>
+                            <p className='px-3 text-[11px] md:text-sm text-secondary-text light:text-secondary-text-light line-clamp-1'>Username: <span className='text-highlight-blue cursor-pointer'>@{data?.username}</span></p>
                         </div>
-                        <div className='h-8 md:h-11 flex items-center border-b border-b-border'>
-                            <a href='mailto:someone@example.com' className='px-3 text-[11px] md:text-sm text-secondary-text line-clamp-1'>Email:<span className='text-highlight-blue cursor-pointer hover:underline'> {data?.email}</span></a>
+                        <div className='h-8 md:h-11 flex items-center border-b border-b-border light:border-border-light'>
+                            <a href='mailto:someone@example.com' className='px-3 text-[11px] md:text-sm text-secondary-text light:text-secondary-text-light line-clamp-1'>Email:<span className='text-highlight-blue cursor-pointer hover:underline'> {data?.email}</span></a>
                         </div>
-                        <div className='h-8 md:h-11 flex items-center border-b border-b-border'>
-                            <p className='px-3 text-[11px] md:text-sm text-secondary-text line-clamp-1'>Phone Number:<span className='text-white'> {data?.phone}</span></p>
+                        <div className='h-8 md:h-11 flex items-center border-b border-b-border light:border-border-light'>
+                            <p className='px-3 text-[11px] md:text-sm text-secondary-text light:text-secondary-text-light line-clamp-1'>Phone Number:<span className='text-primary-text light:text-primary-text-light'> {data?.phone}</span></p>
                         </div>
-                        <div className='py-2 md:py-2.5 border-b border-b-border'>
-                            <p className='px-3 text-[11px] md:text-sm text-secondary-text line-clamp-3'>Address:<span className='text-highlight-blue cursor-pointer hover:underline'> {data?.address?.address}, {data?.address?.city}, {data?.address?.state}, {data?.address?.country}, {data?.address?.postalCode}</span></p>
+                        <div className='py-2 md:py-2.5 border-b border-b-border light:border-border-light'>
+                            <p className='px-3 text-[11px] md:text-sm text-secondary-text light:text-secondary-text-light line-clamp-3'>Address:<span className='text-highlight-blue cursor-pointer hover:underline'> {data?.address?.address}, {data?.address?.city}, {data?.address?.state}, {data?.address?.country}, {data?.address?.postalCode}</span></p>
                         </div>
                     </div>
                 </div>
