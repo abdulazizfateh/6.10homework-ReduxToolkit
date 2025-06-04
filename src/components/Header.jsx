@@ -9,7 +9,7 @@ import { PiMoonLight } from "react-icons/pi";
 
 const Header = () => {
     const likedItems = useSelector(state => state.likedSlice.likedItemsList);
-    const uniqueCart = useSelector(state => state.cart.uniqueCart);
+    const cart = useSelector(state => state.cart.cart);
     const [light, setLight] = useState(false || JSON.parse(localStorage.getItem("mode")));
     const root = document.documentElement;
     if (light) {
@@ -39,7 +39,7 @@ const Header = () => {
                                         {
                                             item.id === 5 &&
                                             <div className='size-4 sm:size-5 rounded-sm border border-[#046082] light:border-highlight-blue bg-highlight-blue flex items-center justify-center'>
-                                                <span className='text-xs md:text-sm text-primary-text'>{uniqueCart.length}</span>
+                                                <span className='text-xs md:text-sm text-primary-text'>{cart.length}</span>
                                             </div>
                                         }
 

@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProductCards from '../../components/ProductCards';
 import { useNavigate } from 'react-router-dom';
 // Use Selector
 import { useSelector } from 'react-redux';
 // Use Dispatch
 import { useDispatch } from 'react-redux';
-// Add to Cart
-import { addToCart } from '../../redux/features/cart.slice';
-// Remove From Cart
-import { removeFromCart } from '../../redux/features/cart.slice'
+// Add/Remove to/from Cart
+import { addToCart, clearCart, removeFromCart, removeProductCompletely } from '../../redux/features/cart.slice';
 // Add to Liked Items List
 import { addToLikedItems } from '../../redux/features/liked.slice'
 // Icons
@@ -27,15 +25,14 @@ const Cart = () => {
 
   const navigate = useNavigate();
   const cart = useSelector(state => state.cart.cart);
-  const uniqueCart = useSelector(state => state.cart.uniqueCart);
+  console.log(cart);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    setTotalPrice((cart.reduce((sum, item) => sum += (item.price * item.quantity), 0).toFixed(2)));
+  }, [cart])
 
   const dispatch = useDispatch();
-  const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
-  }
-  const handleRemoveFromCart = (product) => {
-    dispatch(removeFromCart(product));
-  }
 
   // Add to Liked List
   const likedItems = useSelector(state => state.likedSlice.likedItemsList);
@@ -48,12 +45,20 @@ const Cart = () => {
       {
         cart.length > 0 ? <section className='section_product_detail py-8'>
           <div className='container mx-auto'>
-            <p className='text-primary-text light:text-secondary-text-light text-base md:text-lg lg:text-xl mb-2 md:mb-3'>Your cart, <span className='text-secondary-text light:text-secondary-text-light'>products</span></p>
+            <div className='flex items-center gap-2 justify-between pb-4'>
+              <p className='text-primary-text light:text-secondary-text-light text-base md:text-lg lg:text-xl'>Your cart, <span className='text-secondary-text light:text-secondary-text-light'>{cart.length} products</span></p>
+              <button onClick={() => dispatch(clearCart())} className='flex items-center gap-1.5 px-3 py-1 md:px-4 md:py-2 rounded-lg border light:border-border-light border-border light:bg-secondary-bg-light bg-secondary-bg cursor-pointer hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light duration-150'>
+                <span className='text-xs md:text-sm text-highlight-hotpink'>
+                  Clear your cart
+                </span>
+                <AiOutlineDelete />
+              </button>
+            </div>
             <div className='product_detail_wrapper grid grid-cols-[3fr_1fr] max-lg:grid-cols-1 gap-5 max-xl:gap-2 max-lg:gap-5'>
-              <div className='border-t border-l border-r border-border light:border-border-light flex flex-col rounded-xl bg-secondary-bg light:bg-secondary-bg-light'>
+              <div className='border-t border-l border-r border-border self-start light:border-border-light flex flex-col rounded-xl bg-secondary-bg light:bg-secondary-bg-light'>
                 {
-                  uniqueCart.map((product, index) => (
-                    <div key={product.id} className={`flex items-center gap-4 ${uniqueCart.length === index + 1 ? "" : "border-b-[0.1px]"} border-border-hover px-2 pr-2 py-3 sm:px-3 sm:py-4 md:px-5 md:py-5`}>
+                  cart.map((product, index) => (
+                    <div key={product.id} className={`flex items-center gap-4 ${cart.length === index + 1 ? "" : "border-b-[0.1px]"} border-border-hover px-2 pr-2 py-3 sm:px-3 sm:py-4 md:px-5 md:py-5`}>
                       <div className='flex items-center justify-center'>
                         <img onClick={() => navigate(`/products/${product.id}`)} className='size-18 min-[450px]:size-28 md:size-36 border border-border light:border-border-light rounded-lg light:bg-primary-bg-light bg-primary-bg hover:border-border-hover duration-200  light:hover:border-border-hover-light cursor-pointer object-cover' src={product.thumbnail} alt="" />
                       </div>
@@ -71,18 +76,21 @@ const Cart = () => {
                         <p className='w-[90%] text-xs md:text-sm text-secondary-text light:text-secondary-text-light line-clamp-2 mb-3 md:mb-4'>{product.description}</p>
                         <div className='flex items-center gap-2 justify-between'>
                           <div className='flex items-center gap-0.5'>
-                            <button onClick={() => handleAddToCart(product)} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light'>
+                            <button onClick={() => dispatch(addToCart(product))} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light'>
                               <IoAdd className='text-sm md:text-base' />
                             </button>
                             <button className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light text-xs md:text-sm lg:text-base'>
-                              {uniqueCart.length}
+                              {product.quantity}
                             </button>
-                            <button onClick={() => handleRemoveFromCart(product)} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light'>
+                            <button onClick={() => dispatch(removeFromCart(product))} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light'>
                               <PiMinusLight className='text-sm md:text-base' />
                             </button>
                           </div>
                           <div>
-                            <button className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light'>
+                            <p className='text-highlight-blue text-sm sm:text-base lg:text-lg'><span className='text-third-text text-[11px] md:text-xs'>Total for this product: </span>${(product?.price * product?.quantity).toFixed(2)}</p>
+                          </div>
+                          <div>
+                            <button onClick={() => dispatch(removeProductCompletely(product))} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light'>
                               <AiOutlineDelete className='text-sm md:text-base text-secondary-text light:text-secondary-text-light' />
                             </button>
                           </div>
@@ -98,7 +106,7 @@ const Cart = () => {
                 </div>
                 <div className='py-3 max-md:py-2 max-md:px-2.5 px-3.5 border-b border-border light:border-border-light flex gap-4 items-center justify-between max-lg:justify-start'>
                   <p className='text-sm max-md:text-[11px] text-secondary-text light:text-secondary-text-light'>Total:</p>
-                  <p className='text-highlight-blue text-[26px] max-md:text-[22px] max-sm:text-[20px]'>${uniqueCart?.price}98</p>
+                  <p className='text-highlight-blue text-[26px] max-md:text-[22px] max-sm:text-[20px]'>   {totalPrice}     </p>
                 </div>
                 <div className='py-3 max-md:py-2 max-md:px-2.5 px-3.5 border-b border-border light:border-border-light'>
                   <p className='text-sm max-md:text-[11px]'><span className='text-secondary-text light:text-secondary-text-light'>Discount:</span> 0<span></span></p>
