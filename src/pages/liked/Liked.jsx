@@ -21,7 +21,7 @@ const Liked = () => {
               <BsCart className='text-secondary-text light:text-secondary-text-light text-3xl lg:text-4xl' />
               <p className='text-sm md:text-base lg:text-lg w-[90%] mx-auto sm:w-full sm:mx-0 text-center'>Add your favourite items to the list</p>
               <p className='text-xs lg:text-sm w-[90%] mx-auto sm:w-full sm:mx-0 text-secondary-text light:text-secondary-text-light text-center'>Tap the ♡ icon on the product and all your favorites will be saved.</p>
-              <button onClick={() => navigate("/products")} className='px-4 py-2 rounded-lg border border-border light:border-border-light bg-secondary-bg light:bg-secondary-bg-light cursor-pointer hover:bg-transparent duration-150'>
+              <button onClick={() => navigate("/products")} className='px-3 py-1 md:px-4 md:py-2 rounded-lg border border-border light:border-border-light bg-secondary-bg light:bg-secondary-bg-light cursor-pointer hover:bg-transparent duration-150'>
                 <span className='text-xs md:text-sm'>
                   Back to Products
                 </span>

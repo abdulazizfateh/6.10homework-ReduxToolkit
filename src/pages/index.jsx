@@ -21,7 +21,7 @@ const MainRouters = () => {
     return (
         <>
             <Routes>
-                <Route path='/' element={<SuspenseCustom><Layout /></SuspenseCustom>}>
+                <Route path='/' element={<Layout />}>
                     // Main Pages
                     <Route path='/' element={<Home />} />
                     <Route path='/products' element={<Products />} />

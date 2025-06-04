@@ -118,7 +118,7 @@ const Cart = () => {
               <BsCart className='text-secondary-text light:text-secondary-text-light light:text-secondary-text-light-light text-3xl lg:text-4xl' />
               <p className='text-sm md:text-base lg:text-lg w-[90%] mx-auto sm:w-full sm:mx-0 text-center'>Your cart is empty</p>
               <p className='text-xs lg:text-sm w-[90%] mx-auto sm:w-full sm:mx-0 text-secondary-text light:text-secondary-text-light light:text-secondary-text-light-light text-center'>Tap the + icon on the product to add a product</p>
-              <button onClick={() => navigate("/products")} className='px-4 py-2 rounded-lg border light:border-border-light border-border light:bg-secondary-bg-light bg-secondary-bg cursor-pointer hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light duration-150'>
+              <button onClick={() => navigate("/products")} className='px-3 py-1 md:px-4 md:py-2 rounded-lg border light:border-border-light border-border light:bg-secondary-bg-light bg-secondary-bg cursor-pointer hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light duration-150'>
                 <span className='text-xs md:text-sm'>
                   Back to Products
                 </span>
