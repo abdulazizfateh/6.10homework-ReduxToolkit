@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ProductCards from '../../components/ProductCards';
 import { useNavigate } from 'react-router-dom';
 // Use Selector
@@ -17,7 +17,6 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { IoMdHeart } from "react-icons/io";
 import { AiOutlineDelete } from "react-icons/ai";
 
-
 const Cart = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -25,11 +24,12 @@ const Cart = () => {
 
   const navigate = useNavigate();
   const cart = useSelector(state => state.cart.cart);
-  console.log(cart);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [totalDiscount, setTotalDiscount] = useState(0);
 
   useEffect(() => {
     setTotalPrice((cart.reduce((sum, item) => sum += (item.price * item.quantity), 0).toFixed(2)));
+    setTotalDiscount((cart.reduce((sum, item) => sum += item.quantity * ((100 * item.price / (100 - item.discountPercentage)) - item.price), 0)).toFixed(2));
   }, [cart])
 
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const Cart = () => {
             <div className='flex items-center gap-2 justify-between pb-4'>
               <p className='text-primary-text light:text-secondary-text-light text-base md:text-lg lg:text-xl'>Your cart, <span className='text-secondary-text light:text-secondary-text-light'>{cart.length} products</span></p>
               <button onClick={() => dispatch(clearCart())} className='flex items-center gap-1.5 px-3 py-1 md:px-4 md:py-2 rounded-lg border light:border-border-light border-border light:bg-secondary-bg-light bg-secondary-bg cursor-pointer hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light duration-150'>
-                <span className='text-xs md:text-sm text-highlight-hotpink'>
+                <span className='text-xs md:text-sm text-primary-text light:text-primary-text-light'>
                   Clear your cart
                 </span>
                 <AiOutlineDelete />
@@ -64,7 +64,10 @@ const Cart = () => {
                       </div>
                       <div className='flex-1'>
                         <div className='flex items-center justify-between mb-1'>
-                          <p onClick={() => navigate(`/products/${product.id}`)} className='cursor-pointer hover:underline duration-150 text-xs md:text-sm text-primary-text light:text-primary-text-light line-clamp-1'>{product.title} </p>
+                          <div className='flex items-center gap-1'>
+                            <p onClick={() => navigate(`/products/${product.id}`)} className='cursor-pointer hover:underline duration-150 text-xs md:text-sm text-primary-text light:text-primary-text-light line-clamp-1'>{product.title} </p>
+                            <span className='text-highlight-hotpink text-xs md:text-sm'>-{product.discountPercentage}%</span>
+                          </div>
                           <button onClick={() => handleLikedItem(product)} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light'>
                             {
                               (likedItems.some(item => item.id === product.id)) ?
@@ -79,7 +82,7 @@ const Cart = () => {
                             <button onClick={() => dispatch(addToCart(product))} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light'>
                               <IoAdd className='text-sm md:text-base' />
                             </button>
-                            <button className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light text-xs md:text-sm lg:text-base'>
+                            <button onClick={() => setEditQuantity(true)} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light text-xs md:text-sm lg:text-base'>
                               {product.quantity}
                             </button>
                             <button onClick={() => dispatch(removeFromCart(product))} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light'>
@@ -87,7 +90,7 @@ const Cart = () => {
                             </button>
                           </div>
                           <div>
-                            <p className='text-highlight-blue text-sm sm:text-base lg:text-lg'><span className='text-third-text text-[11px] md:text-xs'>Total for this product: </span>${(product?.price * product?.quantity).toFixed(2)}</p>
+                            <p className='text-highlight-blue text-sm sm:text-base lg:text-lg'><span className='text-third-text text-[11px] md:text-xs'>Total for this product: </span>${(product?.price * product?.quantity).toFixed(2)} <del className='text-third-text text-xs sm:text-sm lg:text-base'>${(product?.quantity * (100 * product?.price / (100 - product?.discountPercentage))).toFixed(2)}</del></p>
                           </div>
                           <div>
                             <button onClick={() => dispatch(removeProductCompletely(product))} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light'>
@@ -106,10 +109,10 @@ const Cart = () => {
                 </div>
                 <div className='py-3 max-md:py-2 max-md:px-2.5 px-3.5 border-b border-border light:border-border-light flex gap-4 items-center justify-between max-lg:justify-start'>
                   <p className='text-sm max-md:text-[11px] text-secondary-text light:text-secondary-text-light'>Total:</p>
-                  <p className='text-highlight-blue text-[26px] max-md:text-[22px] max-sm:text-[20px]'>   {totalPrice}     </p>
+                  <p className='text-highlight-blue text-[26px] max-md:text-[22px] max-sm:text-[20px]'>${totalPrice} <del className='text-third-text text-base md:text-lg'>${(+totalDiscount + +totalPrice).toFixed(2)}</del></p>
                 </div>
                 <div className='py-3 max-md:py-2 max-md:px-2.5 px-3.5 border-b border-border light:border-border-light'>
-                  <p className='text-sm max-md:text-[11px]'><span className='text-secondary-text light:text-secondary-text-light'>Discount:</span> 0<span></span></p>
+                  <p className='text-sm max-md:text-[11px]'><span className='text-secondary-text light:text-secondary-text-light'>Discount:</span> <span className='text-highlight-hotpink'>-${totalDiscount}</span><span></span></p>
                 </div>
                 <div className='py-3 max-md:py-2.5 flex-1 flex items-end gap-0.5 md:gap-1 max-lg:items-end max-md:px-2.5 px-3.5'>
                   <button className='px-4 md:px-6 lg:flex-1 h-9 md:h-10 lg:h-11 rounded-md md:rounded-lg bg-highlight-blue hover:bg-[#00bbffd5] flex items-center justify-center cursor-pointer'>
