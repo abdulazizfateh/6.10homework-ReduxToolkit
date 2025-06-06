@@ -41,7 +41,6 @@ const ProductCards = ({ data, loading }) => {
                             return <div key={product.id} className='card bg-secondary-bg light:bg-primary-bg-light overflow-hidden rounded-lg border border-border light:border-border-light group'>
                                 <div className='card_image bg-border light:bg-secondary-bg-light overflow-hidden relative'>
                                     <img onClick={() => navigate(`/products/${product.id}`)} loading="lazy" className='object-contain min-[320px]:object-cover w-full h-[160px] sm:h-[220px] md:h-[289px] group-hover:scale-[1.03] duration-500' src={product.images[0]} alt={product.title} />
-
                                 </div>
                                 <div className='card_body p-2 md:pt-2.5 md:p-3'>
                                     <h4 className='card_title text-xs md:text-sm font-medium h-8 md:h-11 mb-1 line-clamp-2'>{product.title}</h4>

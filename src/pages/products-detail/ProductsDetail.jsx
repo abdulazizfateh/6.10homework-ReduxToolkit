@@ -70,7 +70,7 @@ const ProductsDetail = () => {
                         <div className='py-3 max-md:py-2.5 flex-1 flex items-end gap-0.5 md:gap-1 max-lg:items-end max-md:px-2.5 px-3.5 text-primary-text'>
                             <button onClick={() => dispatch(addToLikedItems(data))} className='w-9 md:w-10 lg:flex-1/7 h-9 md:h-10 lg:h-11 rounded-md md:rounded-lg bg-highlight-blue hover:bg-[#00bbffd5] flex items-center justify-center cursor-pointer'>
                                 {
-                                    likedItems.some(item => item.id === data.id) ? <IoMdHeart className='text-lg md:text-xl lg:text-2xl' /> : <IoMdHeartEmpty className='text-lg md:text-xl lg:text-2xl' />
+                                    likedItems.some(item => item.id === data?.id) ? <IoMdHeart className='text-lg md:text-xl lg:text-2xl' /> : <IoMdHeartEmpty className='text-lg md:text-xl lg:text-2xl' />
                                 }
                             </button>
                             <button onClick={() => handleAddToCart(data)} className={`${isClicked === data?.id ? "fly" : ""} px-4 md:px-6 lg:flex-6/7 h-9 md:h-10 lg:h-11 rounded-md md:rounded-lg bg-highlight-blue hover:bg-[#00bbffd5] flex items-center justify-center cursor-pointer`}>
