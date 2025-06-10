@@ -2,22 +2,24 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 // Loading Product Cards
 import LoadingProductCards from "./LoadingProductCards";
-// Icons
-import { IoAdd } from "react-icons/io5";
-import { IoMdHeartEmpty } from "react-icons/io";
-import { IoMdHeart } from "react-icons/io";
-
 // Use Dispatch, Selector
 import { useDispatch, useSelector } from 'react-redux';
 // Add to Liked Items List
 import { addToLikedItems } from '../redux/features/liked.slice'
 // Add to Cart
-import { addToCart } from '../redux/features/cart.slice'
+import { addToCart, removeProductCompletely } from '../redux/features/cart.slice'
+// Icons
+import { IoAdd } from "react-icons/io5";
+import { IoMdHeartEmpty } from "react-icons/io";
+import { IoMdHeart } from "react-icons/io";
+import { AiOutlineDelete } from "react-icons/ai";
 
 const ProductCards = ({ data, loading }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const likedItems = useSelector(state => state.likedSlice.likedItemsList);
+    const cart = useSelector(state => state.cart.cart);
+
     const handleLikedItem = (product) => {
         dispatch(addToLikedItems(product));
     }
@@ -29,6 +31,10 @@ const ProductCards = ({ data, loading }) => {
             SetIsClicked(null);
         }, 450);
     }
+    const handleRemoveFromCart = (product) => {
+        dispatch(removeProductCompletely(product));
+    }
+
     return (
         <section className='section_products py-8 min-h-[92dvh]'>
             <div className="container mx-auto">
@@ -50,14 +56,20 @@ const ProductCards = ({ data, loading }) => {
                                         <div className='flex items-center gap-1'>
                                             <button onClick={() => handleLikedItem(product)} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light light:hover:border-border-hover-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent'>
                                                 {
-                                                    (likedItems.some(item => item.id === product.id)) ?
+                                                    likedItems.some(item => item.id === product.id) ?
                                                         <IoMdHeart className='text-highlight-blue text-sm md:text-base' />
                                                         : <IoMdHeartEmpty className='text-highlight-blue text-sm md:text-base' />
                                                 }
                                             </button>
-                                            <button onClick={() => handleAddToCart(product)} className={`${isClicked === product.id ? "fly" : ""} size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light light:hover:border-border-hover-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent`}>
-                                                <IoAdd className='text-sm md:text-base' />
-                                            </button>
+                                            {
+                                                cart.some(item => item.id === product.id) ?
+                                                    <button onClick={() => handleRemoveFromCart(product)} className={`${isClicked === product.id ? "fly" : ""} size-7 md:size-8 cursor-pointer rounded-md bg-highlight-blue hover:bg-[#00bbffd5] border border-[#076082] flex items-center justify-center`}>
+                                                        <AiOutlineDelete className='text-sm md:text-base' />
+                                                    </button> :
+                                                    <button onClick={() => handleAddToCart(product)} className={`${isClicked === product.id ? "fly" : ""} size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light light:hover:border-border-hover-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent`}>
+                                                        <IoAdd className='text-sm md:text-base' />
+                                                    </button>
+                                            }
                                         </div>
                                     </div>
                                 </div>

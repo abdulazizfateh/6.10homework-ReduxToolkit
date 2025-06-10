@@ -49,7 +49,7 @@ const Header = () => {
                         }
                     </ul>
                     <div className='flex items-center gap-2'>
-                        <button onClick={() => setLight(prev => !prev)} className='cursor-pointer size-7 md:size-8 rounded-md bg-border light:bg-secondary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent'>
+                        <button onClick={() => setLight(prev => !prev)} className='cursor-pointer size-7 md:size-8 rounded-md bg-transparent light:hover:bg-secondary-bg-light hover:bg-border flex items-center justify-center border border-[#3d444d] light:border-border-light'>
                             {
                                 light ? <PiMoonLight /> : <GoSun />
                             }

@@ -8,3 +8,9 @@ export const store = configureStore({
         cart
     }
 })
+
+store.subscribe(() => {
+    const state = store.getState();
+    localStorage.setItem("cart", JSON.stringify(state.cart.cart));
+    localStorage.setItem("likedItems", JSON.stringify(state.likedSlice.likedItemsList))
+})
