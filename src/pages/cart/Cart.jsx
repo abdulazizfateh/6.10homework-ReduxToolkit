@@ -72,10 +72,10 @@ const Cart = () => {
                 <IoCloseOutline className='text-lg md:text-xl' />
               </button>
               <div className='flex items-end justify-end gap-2 flex-1'>
-                <button onClick={handleCancel} className='flex items-center gap-1.5 px-2 py-1.5 sm:px-3 md:px-3.5 rounded-lg border-[0.5px] bg-border light:bg-primary-bg-light border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light cursor-pointer duration-150'>
+                <button onClick={handleCancel} className='flex items-center gap-1.5 px-4 py-2 sm:px-5 md:px-6 rounded-lg border bg-border active:bg-third-text light:bg-primary-bg-light border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light cursor-pointer duration-150'>
                   <span className='text-xs md:text-sm text-primary-text light:text-primary-text-light'>Cancel</span>
                 </button>
-                <button onClick={handleOk} className='flex items-center gap-1.5 px-3 py-1.5 sm:px-4 md:px-5 rounded-lg border-[0.5px] bg-highlight-blue hover:bg-[#00bbffd5] border-border-hover cursor-pointer duration-150'>
+                <button onClick={handleOk} className='flex items-center gap-1.5 px-4 py-2 sm:px-5 md:px-6 rounded-lg border-[0.5px] bg-highlight-blue hover:bg-[#00bbffd5] active:bg-[#076082] active:bg- border-border-hover cursor-pointer duration-150'>
                   <span className='text-xs md:text-sm light:text-primary-text'>Ok</span>
                 </button>
               </div>
@@ -88,7 +88,7 @@ const Cart = () => {
           <div className='container mx-auto'>
             <div className='flex items-center gap-2 justify-between pb-4'>
               <p className='text-primary-text light:text-secondary-text-light text-base md:text-lg lg:text-xl'>Your cart, <span className='text-secondary-text light:text-secondary-text-light'>{cart.length} products</span></p>
-              <button onClick={handleClearCart} className='flex items-center gap-1.5 px-3 py-1 md:px-4 md:py-2 rounded-lg border light:border-border-light border-border light:bg-secondary-bg-light bg-secondary-bg cursor-pointer hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light duration-150'>
+              <button onClick={handleClearCart} className='flex items-center gap-1.5 px-3 py-1.5 md:px-4 md:py-2 rounded-lg border light:border-border-light border-border light:bg-secondary-bg-light bg-secondary-bg cursor-pointer hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light duration-150'>
                 <span className='text-xs md:text-sm text-primary-text light:text-primary-text-light'>
                   Clear your cart
                 </span>
@@ -156,7 +156,7 @@ const Cart = () => {
                   <p className='text-sm max-md:text-[11px]'><span className='text-secondary-text light:text-secondary-text-light'>Discount:</span> <span className='text-highlight-hotpink'>-${totalDiscount}</span><span></span></p>
                 </div>
                 <div className='py-3 max-md:py-2.5 flex-1 flex items-end gap-0.5 md:gap-1 max-lg:items-end max-md:px-2.5 px-3.5'>
-                  <button className='px-4 md:px-6 lg:flex-1 h-9 md:h-10 lg:h-11 rounded-md md:rounded-lg bg-highlight-blue hover:bg-[#00bbffd5] border border-[#076082] flex items-center justify-center cursor-pointer'>
+                  <button className='px-4 md:px-6 lg:flex-1 h-9 md:h-10 lg:h-11 rounded-md md:rounded-lg bg-highlight-blue hover:bg-[#00bbffd5] border border-[#076082] light:border-[#baecff] flex items-center justify-center cursor-pointer'>
                     <span className='text-sm md:text-base xl:text-lg font-medium light:text-primary-text'>Go to checkout</span>
                   </button>
                 </div>

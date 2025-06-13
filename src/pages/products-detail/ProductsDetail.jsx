@@ -96,7 +96,7 @@ const ProductsDetail = () => {
                                                 <PiMinusLight className='text-sm md:text-base text-primary-text light:text-primary-text-light' />
                                             </button>
                                         </div>
-                                        <button onClick={() => navigate("/cart")} className='px-4 md:px-6 h-9 md:h-10 lg:h-11 rounded-md md:rounded-lg bg-highlight-blue hover:bg-[#00bbffd5] border border-[#076082] light:border-[#baecff] flex items-center justify-center cursor-pointer'>
+                                        <button onClick={() => navigate("/cart")} className='px-4 md:px-6 h-9 md:h-10 lg:h-11 rounded-md md:rounded-lg bg-highlight-blue hover:bg-[#00bbffd5] border border-[#076082] light:border-[#baecff] flex items-center justify-center cursor-pointer light:border-'>
                                             <span className='text-sm md:text-base xl:text-lg font-medium'>Go to your cart</span>
                                         </button>
                                     </div>
