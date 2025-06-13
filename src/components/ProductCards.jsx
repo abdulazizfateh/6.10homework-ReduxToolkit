@@ -63,8 +63,8 @@ const ProductCards = ({ data, loading }) => {
                                             </button>
                                             {
                                                 cart.some(item => item.id === product.id) ?
-                                                    <button onClick={() => handleRemoveFromCart(product)} className={`${isClicked === product.id ? "fly" : ""} size-7 md:size-8 cursor-pointer rounded-md bg-highlight-blue hover:bg-[#00bbffd5] border border-[#076082] flex items-center justify-center`}>
-                                                        <AiOutlineDelete className='text-sm md:text-base' />
+                                                    <button onClick={() => handleRemoveFromCart(product)} className={`${isClicked === product.id ? "fly" : ""} size-7 md:size-8 cursor-pointer rounded-md bg-highlight-blue hover:bg-[#00bbffd5] border border-[#076082] light:border-[#baecff] flex items-center justify-center`}>
+                                                        <AiOutlineDelete className='text-sm md:text-base text-white' />
                                                     </button> :
                                                     <button onClick={() => handleAddToCart(product)} className={`${isClicked === product.id ? "fly" : ""} size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light light:hover:border-border-hover-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent`}>
                                                         <IoAdd className='text-sm md:text-base' />

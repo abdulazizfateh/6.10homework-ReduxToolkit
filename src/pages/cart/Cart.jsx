@@ -64,8 +64,8 @@ const Cart = () => {
     <>
       {
         isModalOpen && (
-          <div onClick={(e) => handleOutsideClick(e)} className='modal_overlay fixed inset-0 z-50 flex items-start justify-center pt-32 bg-[#030712be] light:bg-[#03071287]'>
-            <div className='clear_cart_confirmation_modal relative flex flex-col w-[70%] sm:w-[50%] h-36 lg:w-[420px] lg:h-44 bg-secondary-bg light:bg-secondary-bg-light rounded-xl border border-border light:border-border-light p-3 md:p-4 lg:p-5'>
+          <div onClick={(e) => handleOutsideClick(e)} className='modal_overlay fixed inset-0 z-50 flex items-center justify-center bg-[#030712be] light:bg-[#03071287]'>
+            <div className='clear_cart_confirmation_modal relative flex flex-col w-[80%] sm:w-[50%] h-36 lg:w-[420px] lg:h-44 bg-secondary-bg light:bg-secondary-bg-light rounded-xl border border-border light:border-border-light p-4 lg:p-5'>
               <p className='font-medium text-xs md:text-sm w-[85%] lg:text-base mb-1 text-primary-text light:text-primary-text-light'>Are you sure you want to delete your cart?</p>
               <p className='text-xs lg:text-sm text-secondary-text light:text-secondary-text-light'>This action cannot be undone</p>
               <button onClick={() => setIsModalOpen(false)} className='absolute top-3 right-3 md:top-4 md:right-4 lg:top-5 lg:right-5 size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light'>
@@ -120,13 +120,13 @@ const Cart = () => {
                         <p className='w-[90%] text-xs md:text-sm text-secondary-text light:text-secondary-text-light line-clamp-2 mb-3 md:mb-4'>{product.description}</p>
                         <div className='flex items-center gap-2 justify-between'>
                           <div className='flex items-center gap-0.5'>
-                            <button onClick={() => dispatch(addToCart(product))} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light'>
+                            <button onClick={() => dispatch(addToCart(product))} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light light:active:bg-secondary-text active:bg-secondary-text-light'>
                               <IoAdd className='text-sm md:text-base' />
                             </button>
                             <button onClick={() => setEditQuantity(true)} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light'>
                               <span className='text-xs md:text-sm lg:text-base'>{product.quantity}</span>
                             </button>
-                            <button onClick={() => dispatch(removeFromCart(product))} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light'>
+                            <button onClick={() => dispatch(removeFromCart(product))} className='size-7 md:size-8 cursor-pointer rounded-md bg-border light:bg-primary-bg-light flex items-center justify-center border border-[#3d444d] light:border-border-light hover:bg-transparent light:hover:bg-primary-bg-light light:hover:border-border-hover-light light:active:bg-secondary-text active:bg-secondary-text-light'>
                               <PiMinusLight className='text-sm md:text-base' />
                             </button>
                           </div>
