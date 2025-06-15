@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { headerRouteLinks } from "../static";
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 // Use Selector
 import { useSelector } from 'react-redux';
 // Icons
 import { GoSun } from "react-icons/go";
 import { PiMoonLight } from "react-icons/pi";
+import { IoBagOutline } from "react-icons/io5";
+import { IoMdHeartEmpty } from "react-icons/io";
+
+// Icon (Logo)
+import { IoLogoStencil } from "react-icons/io5";
 
 const Header = () => {
     const likedItems = useSelector(state => state.likedSlice.likedItemsList);
@@ -23,37 +28,36 @@ const Header = () => {
     return (
         <header className='site_header sticky w-full top-0 left-0 bg-primary-bg light:bg-primary-bg-light z-20 border-b border-border light:border-border-light'>
             <div className='container mx-auto'>
-                <nav className='h-[55px] md:h-[60px] flex items-center justify-between sm:justify-end sm:relative'>
-                    <ul className='flex items-center gap-[12px] sm:absolute sm:top-1/2 sm:right-1/2 sm:-translate-y-[50%] sm:translate-x-[50%]'>
-                        {
-                            headerRouteLinks.map((item) => (
-                                <li key={item.id}>
-                                    <NavLink className={`${(item.id === 4 || item.id === 5) ? "flex gap-1" : ""} header_link pb-[4px] pt-[8px] sm:py-[4px] text-xs md:text-sm border-b border-b-transparent hover:border-b-[#98a1ae] duration-150 ease-out`} to={`${item.route}`}>
-                                        <span>{item.title}</span>
-                                        {
-                                            item.id === 4 &&
-                                            <div className='size-4 sm:size-5 rounded-sm border border-[#046082] light:border-highlight-blue bg-highlight-blue flex items-center justify-center'>
-                                                <span className='text-xs md:text-sm text-primary-text'>{likedItems.length}</span>
-                                            </div>
-                                        }
-                                        {
-                                            item.id === 5 &&
-                                            <div className='size-4 sm:size-5 rounded-sm border border-[#046082] light:border-highlight-blue bg-highlight-blue flex items-center justify-center'>
-                                                <span className='text-xs md:text-sm text-primary-text'>{cart.length}</span>
-                                            </div>
-                                        }
-
-                                    </NavLink>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                    <div className='flex items-center gap-2'>
-                        <button onClick={() => setLight(prev => !prev)} className='cursor-pointer size-7 md:size-8 rounded-md bg-transparent light:hover:bg-secondary-bg-light hover:bg-border flex items-center justify-center border border-[#3d444d] light:border-border-light'>
+                <nav className='h-[55px] md:h-[60px] lg:h-[65px] flex items-center justify-between sm:relative'>
+                    <div className=''>
+                        <Link to={"/"}>
+                            <IoLogoStencil className='text-primary-text light:text-primary-text-light text-2xl md:text-3xl cursor-pointer' />
+                        </Link>
+                    </div>
+                    <div className='flex items-center gap-5 md:gap-14 lg:gap-16 xl:gap-20'>
+                        <div className='flex items-center gap-5'>
                             {
-                                light ? <PiMoonLight /> : <GoSun />
+                                headerRouteLinks.map((item) => (
+                                    <div key={item.id}>
+                                        <NavLink className="flex items-center gap-1 relative header_link pb-[4px] pt-[8px] sm:py-[4px] text-xs md:text-sm border-b border-b-transparent hover:border-b-[#98a1ae] duration-150 ease-out" to={`${item.route}`}>
+                                            {
+                                                item.id === 1 ? <IoMdHeartEmpty className='text-[22px]' /> : <IoBagOutline className='text-[22px]' />
+                                            }
+                                            <div className='absolute top-[-15%] sm:top-[-30%] right-[-50%] size-4 xl:size-[18px] xl:top-[-40%] xl:right-[-60%] bg-highlight-blue rounded-sm flex items-center justify-center border border-[#076082] light:border-[#baecff]'>
+                                                <span className='font-medium text-primary-text'>{item.id === 1 ? likedItems.length : cart.length}</span>
+                                            </div>
+                                        </NavLink>
+                                    </div>
+                                ))
                             }
-                        </button>
+                        </div>
+                        <div className='flex items-center gap-2'>
+                            <button onClick={() => setLight(prev => !prev)} className='cursor-pointer'>
+                                {
+                                    light ? <PiMoonLight className='text-[22px]' /> : <GoSun className='text-[22px]' />
+                                }
+                            </button>
+                        </div>
                     </div>
                 </nav>
             </div>

@@ -1,26 +1,11 @@
 export const headerRouteLinks = [
     {
         id: 1,
-        title: "Home",
-        route: "/"
-    },
-    {
-        id: 2,
-        title: "Products",
-        route: "/products"
-    },
-    {
-        id: 3,
-        title: "Users",
-        route: "/users"
-    },
-    {
-        id: 4,
         title: "Liked",
         route: "/liked"
     },
     {
-        id: 5,
+        id: 2,
         title: "Cart",
         route: "/cart"
     }

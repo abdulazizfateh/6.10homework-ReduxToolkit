@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 // Loading Product Cards
 import LoadingProductCards from "./LoadingProductCards";
@@ -36,12 +36,12 @@ const ProductCards = ({ data, loading }) => {
     }
 
     return (
-        <section className='section_products py-8 min-h-[92dvh]'>
+        <section className='section_products py-5 md:py-7 lg:py-8 min-h-[92dvh]'>
             <div className="container mx-auto">
                 {
                     loading && <LoadingProductCards />
                 }
-                <div className='products_wrapper grid grid-cols-1 min-[320px]:grid-cols-2 gap-x-1.5 gap-y-[8px] sm:gap-y-3 lg:gap-x-2.5 lg:gap-y-4 min-[700px]:gap-2 min-[480px]:grid-cols-3 min-[940px]:grid-cols-4 lg:grid-cols-5'>
+                <div className='products_wrapper grid grid-cols-1 min-[320px]:grid-cols-2 gap-x-1.5 gap-y-[8px] sm:gap-y-3 lg:gap-x-2.5 lg:gap-y-4 min-[700px]:gap-2 min-[480px]:grid-cols-3 min-[1024px]:grid-cols-4 xl:grid-cols-5'>
                     {
                         data?.map((product) => {
                             return <div key={product.id} className='card bg-secondary-bg light:bg-primary-bg-light overflow-hidden rounded-lg border border-border light:border-border-light group'>
